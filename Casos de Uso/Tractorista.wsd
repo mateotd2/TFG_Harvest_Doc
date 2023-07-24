@@ -1,0 +1,36 @@
+@startuml Tractoristas
+
+actor Capataz as c
+actor Tractorista as a
+
+
+package TareasTractor as TT{
+    usecase "Gestionar Tareas Recogida Pendientes" as VT
+    usecase "Notificar Nueva Recogida*" as NR
+    usecase "Seleccionar Tarea" as ST
+    usecase "Comenzar Tarea Seleccionada" as CT
+    usecase "Notificar Finalización Tarea" as NF    
+    usecase "Listar Tareas Pendientes" as LT
+}
+
+package TareasCapataz as TC {
+    usecase "Finalizar Linea Asignada" as  FL
+}
+
+
+a -right- NR
+a -right- VT
+
+VT .up.> ST: <<include>>
+VT <.. NF: <<extends>>
+VT ..> CT: <<include>>
+VT .right.> LT: <<include>>
+
+
+a -up-|> c
+c -right- TC
+
+FL <.down. NR: <<extend>>
+
+
+@enduml

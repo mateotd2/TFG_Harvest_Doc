@@ -1,0 +1,57 @@
+@startuml CapaPersistencia2
+
+
+class  Empleado{
+    String dni
+    String nss
+    String telefono
+    String nombre
+    String apellidos
+    Date fechaNac
+
+}
+
+class EmpleadoViñedos{
+    String user
+    String pass
+    Rol rol
+}
+note left of EmpleadoViñedos
+Son empleados durante todo el año. 
+Solo estos tendran acceso a la aplicacion.
+end note
+enum Rol{
+    ADMIN
+    CAPATAZ
+    CAPATAZ_TRACTORISTA
+}
+note left of Rol
+    CAPATA_TRACTORISTA puede desempeñar tareas de <b>tractorista</b>,
+    pero tambien de <b>capataz</b>
+end note
+
+class TrabajadorVendimia{
+
+}
+note right of TrabajadorVendimia
+    Son empleados <b>solo durante la campaña</b>,
+     y de disponibilidad muy variable
+end note
+
+class DisponibilidadDiaria{
+    DateTime horaDeEntrada
+    DateTime horaDeSalida
+    Date Dia
+}
+
+EmpleadoViñedos -up-|> Empleado
+TrabajadorVendimia -up-|>Empleado
+
+EmpleadoViñedos -down- Rol
+
+TrabajadorVendimia "1" -down->  "0..*" DisponibilidadDiaria : "Dias disponibles de trabajo"
+
+EmpleadoViñedos "1" -right- "0..*" TrabajadorVendimia :    "   Administra    "
+
+
+@enduml

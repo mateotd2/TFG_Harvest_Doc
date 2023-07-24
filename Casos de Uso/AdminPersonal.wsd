@@ -1,0 +1,53 @@
+@startuml Administrador2
+' legt to right direction
+' :Actor: --> package(Use)
+' actor Guest as g
+
+actor Administrador as a
+
+
+package AdministracionPersonal{
+    usecase "Gestionar Personal de Vendimia" as GPV
+    usecase "Visualizar Listado de Personal" as VP
+    usecase "Seleccionar Trabajador" as SE 
+    usecase "Visualizar datos de empleado" as VE
+    usecase "Gestion datos empleado" as GE
+    usecase "Visualizar Resumen/Historial de trabajos de empleado" as VR
+    usecase "Añadir nuevo empleado" as AE
+    usecase "Modificar datos de empleado" as ME
+    usecase "Dar de baja a empleado" as BM
+    usecase "Añadir/modificar disponibilidad" as AMD
+    usecase "Pasar Lista" as PL
+    usecase "Imprimir personal disponible por dia" as IP
+
+}
+a -right- GPV
+a -down- IP
+
+
+PL -up-|> IP
+IP -up-|> VP
+
+GPV .up.> SE : <<include>>
+GPV ..> VP : <<include>>
+GPV <|-right- GE 
+GE  ..> VE:  <<include>>
+
+GE ..> AE : <<include>>
+GE ..> ME : <<include>>
+GE ..> BM : <<include>>
+
+
+AE ..> AMD : <<include>>
+ME ..> AMD : <<include>>
+
+AMD .-> PL : <<extends>>
+
+VR .up-> VE : <<extends>>
+
+
+
+
+
+
+@enduml
