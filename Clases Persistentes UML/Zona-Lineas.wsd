@@ -55,31 +55,41 @@ class Campaña{
     Date inicioCampaña
     Date finalizacionCampaña
     int año
+    Fase fase
 
 }
 
 class LineaCampaña{
     Estado estado
-    int cajasObtenidas
+    int porcentajeTrabajado
+    boolean cargaLista
+    datetime finalizacionLimpieza
+    datetime finalizacionPoda
+    datetime finalizacionRecoleccion
+    datetime finalizacionCarga
 }
 
 enum Estado{
-    RECOLECCION_DESHABILITADA
-    SIN_EMPEZAR
     PAUSADO
-    LIMPIANDO
-    RECOLECTANDO
-    RECOGIENDO
+    TRABAJANDO
     FINALIZADA
 }
-note right of Estado
-    El estado nos proporcionara el estado actual 
-    de una linea durante la campaña
-    PODRIA DIVIDIRLO EN DOS? 
-        Estados(SIN_EMPEZAR,, PAUSADO, FINALIZADA)
-         y EstadosProgreso( LIMPIANDO, RECOLECTANDO, RECOGIENDO)
-         RECOLECCION_DESHABILITADA no creo que me haga falta
-end note
+
+enum Fase{
+    LIMPIEZA
+    PODA
+    RECOLECCION_CARGA
+}
+
+
+' note right of Estado
+'     El estado nos proporcionara el estado actual 
+'     de una linea durante la campaña
+'     PODRIA DIVIDIRLO EN DOS? 
+'         Estados(SIN_EMPEZAR,, PAUSADO, FINALIZADA)
+'          y EstadosProgreso( LIMPIANDO, RECOLECTANDO, RECOGIENDO)
+'          RECOLECCION_DESHABILITADA no creo que me haga falta
+' end note
 
 class ZonaCampaña{
     
@@ -110,8 +120,7 @@ EmpleadoViñedos "1" -- "0..*" TrabajoEnLinea : Asigna Trabajador >
 note right on link
     Un capataz o tractorista
     asigna a un trabajador de vendimia 
-    a una linea y se genera
-    un TrabajoEnLinea
+    a un trabajo pendiente en linea.
 end note
 
 EmpleadoViñedos "1  "-right- "0..*" Campaña : Administrador Inicia >
@@ -141,6 +150,7 @@ LineaCampaña -- Estado
 Campaña "1" *-- "1..*" ZonaCampaña
 ZonaCampaña *-- "1..*" LineaCampaña 
 
+Campaña -- Fase
 
 
 
