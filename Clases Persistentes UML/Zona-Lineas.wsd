@@ -5,9 +5,13 @@ class Zona {
     String nombre
     int metrosCuadrados
     String descripcion
+    Formacion formacion
     String referenciaCatastral
-    
+}
 
+enum Formacion{
+    EMPARRADO
+    ESPALDERA
 }
 
 note as N1
@@ -21,7 +25,6 @@ class Linea {
     int numeroLinea
     int longitud
     Date fechaPlantacion
-    String tipoFormacion
     boolean recoleccionHabilitada
 }
 
@@ -63,10 +66,10 @@ class LineaCampaña{
     Estado estado
     int porcentajeTrabajado
     boolean cargaLista
-    datetime finalizacionLimpieza
-    datetime finalizacionPoda
-    datetime finalizacionRecoleccion
-    datetime finalizacionCarga
+    Datetime finalizacionLimpieza
+    Datetime finalizacionPoda
+    Datetime finalizacionRecoleccion
+    Datetime finalizacionCarga
 }
 
 enum Estado{
@@ -81,15 +84,6 @@ enum Fase{
     RECOLECCION_CARGA
 }
 
-
-' note right of Estado
-'     El estado nos proporcionara el estado actual 
-'     de una linea durante la campaña
-'     PODRIA DIVIDIRLO EN DOS? 
-'         Estados(SIN_EMPEZAR,, PAUSADO, FINALIZADA)
-'          y EstadosProgreso( LIMPIANDO, RECOLECTANDO, RECOGIENDO)
-'          RECOLECCION_DESHABILITADA no creo que me haga falta
-' end note
 
 class ZonaCampaña{
     
@@ -111,6 +105,8 @@ class UsoDeTractor{
     
 }
  
+
+Zona -- Formacion 
 
 TrabajoEnLinea "0..*" -up- "0..*" Tractor : > Se usa en 
 
