@@ -1,0 +1,69 @@
+@startuml CapaPersistencia2
+
+
+class  Empleado{
+    String dni
+    String nss
+    String telefono
+    String nombre
+    String apellidos
+    Date fechaNac
+
+}
+
+class EmpleadoViñedos{
+    String user
+    String pass
+    Rol rol
+}
+
+enum Rol{
+    ADMIN
+    CAPATAZ
+    CAPATAZ_TRACTORISTA
+}
+
+
+class Asistencia{
+    String nombre
+    String apellidos
+    Long idDisponibiidadDiaria
+    LocalDate dia
+}
+note right of Asistencia
+    Clase no persistente, utilizada unicamente para enviar una lista
+     de asistencias en un dia determinado 
+end note
+
+
+class TrabajadorVendimia{
+    <b>Boolean disponible </b>
+}
+note right of TrabajadorVendimia
+    Nuevo atributo <b>disponible</b> para concretar si el trabajador fue dado de baja,
+    afectaria a la hora de realizar busquedas de los trabajadores.
+end note
+
+class DisponibilidadDiaria{
+    DateTime horaDeEntrada
+    DateTime horaDeSalida
+    Date Dia
+    <b>Boolean asistencia = false</b> 
+}
+
+note right of DisponibilidadDiaria
+    Nuevo atributo <b>asistencia</b> inicializado a false para que la disponibilidad sea la 
+    entidad mas usada para pasar lista cada dia.
+end note
+
+EmpleadoViñedos -up-|> Empleado
+TrabajadorVendimia -up-|>Empleado
+
+EmpleadoViñedos -down- Rol
+
+TrabajadorVendimia "1" -down->  "0..*" DisponibilidadDiaria : "Dias disponibles de trabajo"
+
+EmpleadoViñedos "1" -right- "0..*" TrabajadorVendimia :    "   Administra    "
+
+
+@enduml
