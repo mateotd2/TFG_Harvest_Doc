@@ -1,0 +1,46 @@
+@startuml Administracion1
+' legt to right direction
+' :Actor: --> package(Use)
+' actor Guest as g
+
+actor Administrador as a
+
+
+package AdministracionLineas{
+    usecase "Gestionar zonas" as GZ  #LightGoldenRodYellow;line:green;line.dashed;text:green
+    usecase "Edicion de zona" as EZ #palegreen;line:green;text:green
+    usecase "Creacion de nueva zona" as CZ #palegreen;line:green;text:green
+    usecase "Gestionar Lineas" as GL #palegreen;line:green;text:green
+    usecase "Visualizar Listado/Resumen de Zonas" as RZ #palegreen;line:green;text:green
+    usecase "Visualizar resumen de linea" as RL #palegreen;line:green;text:green
+    usecase "Añadir Linea" as AL #palegreen;line:green;text:green
+    usecase "Modificar Linea" as ML #palegreen;line:green;text:green
+    usecase "Deshabilitar/Habilitar recoleccion de linea" as DR #palegreen;line:green;text:green
+    usecase "Seleccionar Zona" as SZ #palegreen;line:green;text:green
+    usecase "Seleccionar Linea" as SL #palegreen;line:green;text:green
+    usecase "Imprimir QR identificador de linea" as QR #OrangeRed;line:Red;text:White
+    usecase "Comenzar Campaña" as CC #palegreen;line:green;text:green
+}
+a -right- GZ
+a -right- CC
+
+EZ<..GZ :<<include>>
+EZ<|-- CZ
+
+GZ .down-> RZ :<<include>>
+GZ .up-> SZ :<<include>>
+
+
+EZ.>GL :<<include>>
+GL .up-> RL :<<include>>
+GL .up-> SL :<<include>>
+QR .down-> RL :<<extend>>
+GL .right-> AL :<<include>>
+GL .right-> ML :<<include>>
+
+
+AL .down-> DR :<<include>>
+ML .down-> DR :<<include>>
+
+
+@enduml
