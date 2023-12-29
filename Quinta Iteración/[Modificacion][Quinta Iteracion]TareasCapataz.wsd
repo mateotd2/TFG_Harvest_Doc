@@ -1,0 +1,49 @@
+@startuml Capataz
+' left to right direction
+' :Actor: --> package(Use)
+' actor Guest as g
+
+actor Capataz as c
+actor Tractorista as a
+
+package TareasCapataz as TC {
+    usecase "Asignar Trabajador a tarea de linea" as AT #palegreen;line:green;text:green
+    usecase "Seleccionar Trabajadores" as BT #palegreen;line:green;text:green
+    usecase "Asignar Tarea de Linea" as AL #palegreen;line:green;text:green
+    usecase "Asignar buscando linea-zona" as ALZ #palegreen;line:green;text:green
+    usecase "Asignar con Codigo QR" as QR
+    usecase "Visualizar Tareas de Lineas Asignadas" as VL #palegreen;line:green;text:green
+    usecase "Seleccionar Tarea Linea Asignada" as SL #palegreen;line:green;text:green
+    usecase "Finalizar Tarea Linea Asignada" as  FL #palegreen;line:green;text:green
+    usecase "Pausar Tarea de Linea Asignada" as  PL #palegreen;line:green;text:green
+    usecase "Comenzar Tarea" as RL #palegreen;line:green;text:green
+}
+
+package TareasTractor as TT{
+    usecase "Notificar Nueva Recogida*" as NR
+}
+
+
+
+a -up-|> c
+
+c -right- AT
+AT .up.> BT: <<include>>
+AT .right.> AL: <<include>>
+
+AL <|-down- ALZ
+AL <|-down- QR
+
+c -right-VL
+
+VL .right.> SL:<<include>>
+VL .down.> FL:<<include>>
+VL .down.> PL:<<include>>
+
+FL<.up. NR: <<extend>>
+
+RL .right.>VL : <<extend>>
+BT <.right.RL : <<include>>
+
+
+a -down- TT
