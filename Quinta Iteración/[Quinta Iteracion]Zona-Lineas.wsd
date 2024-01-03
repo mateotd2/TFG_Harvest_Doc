@@ -35,7 +35,7 @@ class TipoVid #palegreen;line:green;text:green{
 }
 
 class TrabajadorVendimia #palegreen;line:green;text:green{
-
+    boolean inTask;
 }
 
 
