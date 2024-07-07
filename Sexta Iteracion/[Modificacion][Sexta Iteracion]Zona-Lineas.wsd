@@ -108,7 +108,7 @@ class UsoDeTractor #palegreen;line:green;text:green{
 
 Zona -- Formacion 
 
-Tarea "0..*" -up- "0..*" Tractor : > Se usa en 
+Tarea "0..1" -up- "0..*" Tractor : > Se usa en 
 
 (Tarea,Tractor) ..  UsoDeTractor
 

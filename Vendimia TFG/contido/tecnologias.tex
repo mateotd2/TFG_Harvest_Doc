@@ -1,0 +1,66 @@
+\chapter{Tecnologías}
+\label{chap:tecnologias}
+
+\lettrine{E}{n} este capitulo expongo las tecnologías y herramientas utilizadas en la realización del proyecto.
+
+
+
+\section{Lenguajes de programación}
+% Se explica brevemente que lenguajes uso y el motivo por el que los elegí.
+    \subsection{JPQL}
+    Jakarta Persistence Query Languaje(anteriormente Java Persistence Query Languaje)~\cite{JPQL} es un lenguaje simple, basado en cadenas, similar a SQL, y que se utiliza para consultar entidades y sus relaciones.
+    \subsection{Java}
+    Java es un lenguaje de programación basado en clases y orientado a objetos. El motivo por el cual elegí este lenguaje es por la familiaridad con el mismo.
+    \subsection{Yaml}
+    YAML~\cite{YAML} es un lenguaje de serialización de datos diseñado para ser leído y escrito por humanos. Uso este lenguaje para crear archivos de configuración y especificación.
+    \subsection{Dart}
+    Dart~\cite{Dart} es un lenguaje de programación orientado a objetos y de código abierto desarrollado por Google. Este lenguaje porque es el lenguaje de las aplicaciones de Flutter.
+    \subsection{Moustache}
+    Moustache~\cite{Moustache} es un lenguaje para la creación de sistemas de plantillas. En concreto lo usare para la modificación de configuraciones. 
+
+\section{Librerías y/o Frameworks}
+    \subsection{Spring Framework}
+    Spring Framework~\cite{Spring} es un marco de trabajo para el desarrollo de aplicaciones Java, que proporciona infraestructura para la gestión de dependencias, 
+    programación orientada a aspectos, seguridad, y soporte para aplicaciones web. Facilita la creación de aplicaciones robustas y escalables mediante su enfoque modular y su amplia gama de componentes integrados.
+    Permite el uso de sus módulos, los cuales facilitan la construcción de la capa modelo y capas de controlador de la interfaz web. Las características mas importantes que ofrece Spring Framework en este proyecto son:
+    \begin{description}
+        \item[Inversión de Control (IoC)]: Gestiona las dependencias de los objetos mediante la inyección de dependencias, facilitando la creación de aplicaciones desacopladas y más fáciles de probar.
+        \item[Acceso a Datos Simplificado]: Proporciona integración simplificada con diversas tecnologías de acceso a datos, como JDBC, JPA y Hibernate, a través de plantillas y abstracciones.
+        \item[Desarrollo de Aplicaciones Web]: Ofrece un robusto marco MVC (Model-View-Controller) para el desarrollo de aplicaciones web, incluyendo soporte para RESTful web services y WebSocket.
+    \end{description}
+    \subsection{OpenAPI Specification/OAS}
+    La especificación OpenAPI~\cite{OpenAPI}, anteriormente conocido como Swagger, que permite describir, producir, consumir y visualizar APIs HTTP.
+    Esta especificación, que se describe en formato YAML o JSON, se usa para crear documentación automática de estas APIs y puede incluso mediante el uso la herramienta
+    OpenAPI Generator nos permite el generar librerías de código con las que podremos dar uso tanto en lenguaje servidor como cliente.
+    \subsection{Flutter}
+    Flutter ~\cite{Flutter} es un framework de código abierto creado por Google para desarrollar aplicaciones nativas multiplataforma desde una única base de código. 
+    Utiliza el lenguaje de programación Dart y permite la creación de aplicaciones móviles, web y de escritorio con alto rendimiento y interfaces de usuario personalizables.
+\section{Herramientas}
+    \subsection{Organización}
+        \subsubsection{Taiga}
+        Taiga ~\cite{Taiga} es una herramienta gratuita y de código abierto orientada a la gestión de proyectos kaban y scrum.
+    \subsection{Diseño}
+        \subsubsection{PlantUML}
+        PlantUML~\cite{Plantuml} es un componente que permite crear diagramas UML a través de descripciones textuales simples. PlantUML provee una forma fácil de crear representaciones visuales de sistemas complejos.
+        \subsubsection{Figma}
+        Figma~\cite{Figma} es una herramienta de generación de prototipos. Se usara esta herramienta para la creación de prototipos de las pantallas del aplicativo móvil.
+    \subsection{Bases de datos}
+        \subsubsection{H2}
+        H2~\cite{H2} es una base de datos de Java en memoria y muy liviana, con una interfaz fácil de utilizar en navegador. Se utilizara esta base de datos para el desarrollo de la aplicación.
+        \subsubsection{MySQL}
+        MySQL~\cite{MySQL} es una base de datos relacional de código abierto, es una de las mas populares gracias a su facilidad de uso, rendimiento y fiabilidad. Esta base de datos seria la utilizada en un entorno de producción.
+    \subsection{Entornos de desarrollo(IDEs)}
+        \subsubsection{IntelliJ IDEA}
+        IntelliJ IDEA~\cite{IDEA} es un entorno de desarrollo creado por JetBrain para el desarrollo software, especialmente enfocado en el desarrollo de aplicaciones Java, pero también tiene soporte para otros lenguajes de programación.
+        \subsubsection{Android Studio}
+        Android Studio~\cite{Android} es un entorno de desarrollo oficial de aplicaciones Android. Basado en IntelliJ IDEA, pero con muchas mas funciones para la productividad del desarrollo móvil. También tiene soporte para el desarrollo de aplicaciones móviles con Flutter.
+    \subsection{Control de versiones}
+        \subsubsection{Github}
+        Github~\cite{Github} plataforma de desarrollo colaborativo basada en Git~\cite{Git}. Permite gestionar y compartir código, colaborar en proyectos, realizar seguimientos de cambios y revisar ramas mediante pull requests.
+        Además se hace uso de Github Actions para la realización de pruebas de integración e inspección continua.
+
+    \subsection{Docker}
+    Docker~\cite{Docker} es una plataforma de contenedorización que permite a los desarrolladores empaquetar aplicaciones y sus dependencias en contenedores portátiles y ligeros. 
+    Estos contenedores pueden ejecutarse de manera consistente en cualquier entorno, facilitando el despliegue y la escalabilidad de aplicaciones.
+
+% \Blindtext
