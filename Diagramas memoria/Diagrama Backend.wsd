@@ -1,0 +1,39 @@
+@startuml
+
+rectangle "Frontend" as frontend {
+
+}
+
+folder "Interfaces OpenApi" as open{
+
+}
+
+folder "Aplicacion web/Backend" as app{
+
+    folder "Capa API REST / Controlador " as rest{
+    }
+
+    folder "Capa Modelo" as mod{
+        folder "Acceso a datos con JPA" as ad{
+        }
+
+        folder "Capa lógica de negocio / Servicios + Entidades" as ln{
+            
+        }
+    }
+    
+}
+
+
+database "Base de datos" as db{
+}
+
+frontend <--right-> rest 
+
+rest ..up..|> open
+ln <-up-> rest
+ad <-up-> ln
+
+db <-up->ad
+
+@enduml

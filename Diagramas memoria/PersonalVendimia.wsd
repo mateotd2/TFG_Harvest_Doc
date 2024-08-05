@@ -1,0 +1,49 @@
+@startuml CapaPersistencia2
+
+
+class  Empleado{
+    String dni
+    String nss
+    String telefono
+    String nombre
+    String apellidos
+    Date fechaNac
+    String user
+    String pass
+
+}
+
+
+
+enum Rol{
+    ADMIN
+    CAPATAZ
+    CAPATAZ_TRACTORISTA
+}
+
+
+class TrabajadorVendimia{
+    String dni
+    String nss
+    String telefono
+    String nombre
+    String apellidos
+    Date fechaNac
+}
+
+
+class DisponibilidadDiaria{
+    DateTime horaDeEntrada
+    DateTime horaDeSalida
+    Date Dia
+}
+
+
+Empleado -down- Rol
+
+TrabajadorVendimia "1" -down->  "0..*" DisponibilidadDiaria : "Dias disponibles de trabajo"
+
+Empleado "1" -right- "0..*" TrabajadorVendimia :    "   Administra    "
+
+
+@enduml

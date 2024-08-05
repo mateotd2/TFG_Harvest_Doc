@@ -1,0 +1,80 @@
+@startuml codegen
+
+folder OpenAPI as OA{
+
+    file EspecificacionOAS  as oas{
+
+    }
+
+    node OpenAPIcodegenSpring as oacs{
+
+    }
+    node OpenAPIcodegenDart as oacd{
+
+    }
+
+    oas <-down- oacs : Usa
+    oas <-down- oacd : Usa
+
+
+    artifact artefacto as art{
+        component interfaces as int1{
+            interface interfazN
+            interface interfaz1
+        }
+
+        component dtosJava as dtos{
+            class interfazN
+            class interfaz1
+        }
+    }
+
+    oacs -down-> art : genera
+
+
+    artifact artefacto as art2{
+        component API as int2{
+            class interfazN
+            class interfaz1
+        }
+
+        component dtosDart as dtosd{
+            class interfazN
+            class interfaz1
+        }
+    }
+
+    oacd -down-> art2 : genera
+
+}
+
+
+folder Backend as b{
+
+    folder controlador as cont{
+
+    }
+
+    ' folder servicios as serv{
+
+    ' }
+
+}
+
+cont -up-> dtos: usa
+
+cont .up.|> int1: implementa 
+
+folder Frontend as f{
+    folder apis as apis{
+
+    }
+}
+
+apis -up-> int2:usa
+f -up-> dtosd:usa
+
+
+
+
+@enduml

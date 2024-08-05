@@ -1,0 +1,148 @@
+@startuml CapaPersistencia1
+
+
+class Zona   {
+    String nombre
+    int metrosCuadrados
+    String descripcion
+    Formacion formacion
+    String referenciaCatastral
+}
+
+enum Formacion  {
+    EMPARRADO
+    ESPALDERA
+}
+
+note as N1
+    El Administrador crea y edita zonas y 
+    lineas en cualquier momento del año .
+    Durante la campaña se trabajan esas 
+    lineas y se hace seguimiento del
+    trabajo realizado en estas
+end note
+class Linea  {
+    int numeroLinea
+    int longitud
+    Date fechaPlantacion
+    boolean recoleccionHabilitada
+}
+
+class TipoVid  {
+    String nombre
+    int añosMaduracion
+    String descripcion
+}
+
+class TrabajadorVendimia  {
+    boolean inTask;
+}
+
+
+class Tarea  {
+    DateTime horaEntradaLinea
+    DateTime horaSalidaLinea    
+    String comentarios
+    TipoDeTrabajo tipoTrabajo
+}
+
+Enum TipoDeTrabajo  {
+    LIMPIEZA
+    PODA
+    RECOLECCION
+    CARGA
+
+}
+
+class Campaña  {
+    Date inicioCampaña
+    Date finalizacionCampaña
+    int año
+    Fase fase
+
+}
+
+class LineaCampaña  {
+    int porcentajeTrabajado
+    boolean cargaLista
+    Datetime finalizacionLimpieza
+    Datetime finalizacionPoda
+    Datetime finalizacionRecoleccion
+    Datetime finalizacionCarga
+}
+
+
+enum Fase  {
+    LIMPIEZA
+    PODA
+    RECOLECCION_CARGA
+}
+
+
+class ZonaCampaña  {
+    
+}
+
+
+class EmpleadoViñedos  {
+}
+
+class Tractor  {
+    String marca
+    String modelo
+    String matricula
+    int cargaMaxima
+    int capacidadCajas
+}
+
+class UsoDeTractor  {
+    
+}
+ 
+
+Zona -- Formacion 
+
+Tarea "0..1" -up- "0..*" Tractor : > Se usa en 
+
+(Tarea,Tractor) ..  UsoDeTractor
+
+EmpleadoViñedos "1" -- "0..*" Tarea : Asigna Trabajador >
+note right on link
+    Un capataz o tractorista
+    asigna a un trabajador de vendimia 
+    a un trabajo pendiente en linea.
+end note
+
+EmpleadoViñedos "1  "-right- "0..*" Campaña : Administrador Inicia >
+
+TrabajadorVendimia "0..*" -- "0..*" Tarea : Trabaja >
+note top on link
+    Un Capata puede hacer tareas de limpieza 
+    sin necesidad de un trabajador de vendimia
+end note
+
+
+' EmpleadoViñedos "1" -- "0..*" Zona : administra >
+
+Zona "1" *-- "1..*" Linea
+Linea "*" -- "1" TipoVid
+
+
+Tarea "1..*" --  "1" LineaCampaña
+
+Tarea -right- TipoDeTrabajo
+
+Linea "1" --  "0..*" LineaCampaña
+Zona "1" -- "0..*"  ZonaCampaña 
+
+Campaña "1" *-- "1..*" ZonaCampaña
+ZonaCampaña *-- "1..*" LineaCampaña 
+
+Campaña -- Fase
+
+
+
+
+' Problema: Que pasa si una linea es deshabilitada a mitad de campaña? DEBE DESHABILITARSE de la campaña si no se hizo recoleccion. PROBAR ESTO
+
+@enduml
