@@ -1,0 +1,45 @@
+@startuml Front
+    rectangle Backend as be{
+    }
+
+    rectangle Frontend as fe{
+        folder acceso as ac{
+            file OAuth as auth{
+
+            }
+
+            file API_1 as a1{
+
+            }
+
+            file API_2 as a2{
+
+            }
+
+            file API_n as an{
+
+            }
+            
+            auth -- a1
+            auth -- a2
+            auth -- an
+
+
+
+        }
+        be <-up-> a1
+        be <-up-> a2
+        be <-up-> an
+
+        folder UI as ui{
+
+        }
+
+        ac -right---- ui
+    }
+
+
+
+
+    
+@enduml
